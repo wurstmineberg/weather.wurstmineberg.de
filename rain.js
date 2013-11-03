@@ -13,10 +13,10 @@ $.ajax('http://api.wurstmineberg.de/server/level.json', {
             $('#rain-text').text("I have no idea. Seriously. Something is broken")
         } else if (rainstatus == 0) {
             $('#rain-caption').text("No!")
-            $('#rain-text').text("It's not raining.")
+            $('#rain-text').text("It's not raining, you can come out now.")
         } else {
-            $('#rain-caption').text("Yes!")
-            $('#rain-text').text("It's raining!")
+            $('#rain-caption').text("Yes! D:")
+            $('#rain-text').text("It's raining! Grab yo' helmets, hide yo' snowmen!")
         } 
     }
 });
