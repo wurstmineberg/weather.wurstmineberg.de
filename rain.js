@@ -6,6 +6,10 @@ $.ajax('http://api.wurstmineberg.de/server/level.json', {
             if ('raining' in data['Data']) {
                 rainstatus = data['Data']['raining']
             }
+
+            if ('thundering' in data['Data']) {
+                thunderstatus = data['Data']['thundering']
+            }
         }
 
         if (rainstatus == -1) {
@@ -19,7 +23,11 @@ $.ajax('http://api.wurstmineberg.de/server/level.json', {
             $('#rain-caption').text("Yes! D:")
             $('#rain-text').text("It's raining! Grab yo' helmets, hide yo' snowmen!")
             $('#imdiv').prepend("<img id='wimg' src='/img/rain.png' class='img-rounded' />")
-
+                if (thunderstatus == 1) {
+                    $('#rain-caption').text("Yes! D:")
+                    $('#rain-text').text("It's thundering even! Ermagehrd!")
+                    $('#imdiv').prepend("<img id='wimg' src='/img/thunder.png' class='img-rounded' />")
+                }
         } 
     }
 });
