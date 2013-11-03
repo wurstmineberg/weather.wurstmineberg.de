@@ -1,8 +1,9 @@
 html {
   font-family: Arial, Verdana;
-  font-size:90%;
+  font-size:100%;
 }
 
 #main {
   text-align: center;
+  vertical-align: middle;
 }
