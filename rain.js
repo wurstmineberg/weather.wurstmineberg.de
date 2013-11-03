@@ -14,11 +14,11 @@ $.ajax('http://api.wurstmineberg.de/server/level.json', {
         } else if (rainstatus == 0) {
             $('#rain-caption').text("No!")
             $('#rain-text').text("It's not raining, you can come out now.")
-            $('#image').text("<img src='http://hydra-media.cursecdn.com/minecraft.gamepedia.com/6/61/Sun.png' class='img-rounded'>")
+            $('#imdiv').prepend("<img id='wimg' src='http://hydra-media.cursecdn.com/minecraft.gamepedia.com/6/61/Sun.png' class='img-rounded'>")
         } else {
             $('#rain-caption').text("Yes! D:")
             $('#rain-text').text("It's raining! Grab yo' helmets, hide yo' snowmen!")
-            $('#image').text("<img src='http://i.imgur.com/TP4OGpU.png' class='img-rounded'>")
+            $('#imdiv').prepend("<img id='wimg' src='http://i.imgur.com/TP4OGpU.png' class='img-rounded' />")
 
         } 
     }
