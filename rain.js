@@ -55,15 +55,12 @@ function ticks_to_text(ticks)
 }
 
 function tickTimer() {
-    var thingsHaveChanged = false;
-
     if (!updating) {
         // The thunder status is known and it will now start thundering
         if (thunderTime <= 0) {
             if (thunderTime != -2) {
                 // Thunder status is unknown until next refresh
                 thunderTime = -2;
-                thingsHaveChanged = true;
             };
         } else {
             thunderTime--;
@@ -77,7 +74,6 @@ function tickTimer() {
             if (rainTime != -2) {
                 // Rain status is unknown until next refresh
                 rainTime = -2;
-                thingsHaveChanged = true;
             };
         } else {
             rainTime--;
@@ -155,22 +151,21 @@ function displayWeatherStatus() {
                     $('#forecast-text').text("Weather forecast: There will be sunshine in " + timeText + ".");
                 };
             };
-        } else {
-            $('#rain-caption').text("Yes! D:");
-            $('#rain-text').text("It's raining! Grab yo' helmets, hide yo' snowmen!");
-            $('#wimg').attr('src', '/img/rain.png');
+        };
+    } else {
+        $('#rain-caption').text("Yes! D:");
+        $('#rain-text').text("It's raining! Grab yo' helmets, hide yo' snowmen!");
+        $('#wimg').attr('src', '/img/rain.png');
 
-            if (thunderTime >= 0 && rainTime >= 0) {
-                if (thunderTime < rainTime) {
-                    var timeText = ticks_to_text(rainTime);
-                    $('#forecast-text').text("Weather forecast: WEATHER ALERT: There will be a thunderstorm in " + timeText + "!");
-                } else {
-                    var timeText = ticks_to_text(rainTime);
-                    $('#forecast-text').text("Weather forecast: There will be sunshine in " + timeText + ".");
-                };
+        if (thunderTime >= 0 && rainTime >= 0) {
+            if (thunderTime < rainTime) {
+                var timeText = ticks_to_text(rainTime);
+                $('#forecast-text').text("Weather forecast: WEATHER ALERT: There will be a thunderstorm in " + timeText + "!");
+            } else {
+                var timeText = ticks_to_text(rainTime);
+                $('#forecast-text').text("Weather forecast: There will be sunshine in " + timeText + ".");
             };
-        }
-
+        };
     };
 }
 
