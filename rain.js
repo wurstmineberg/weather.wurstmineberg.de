@@ -3,6 +3,12 @@ var thunderstatus = -2;
 var rainTime = -2;
 var thunderTime = -2;
 
+var thunderMinTicks = 3600;
+var thunderMinWaitTicks = 12000;
+
+var rainMinTicks = 12000;
+var rainMinWaitTicks = 12000;
+
 var updating = true;
 var refreshingData = true;
 
@@ -106,8 +112,14 @@ function displayWeatherStatus() {
         $('#wimg').attr('src', '/img/sun.png');
 
         if (rainTime >= 0) {
-            var timeText = ticks_to_text(rainTime);
-            $('#forecast-text').text("Weather forecast: It will be raining in " + timeText + ".");
+            if ((thunderstatus == 1 && thunderTime < rainTime) ||
+                (thunderTime < rainTime && thunderTime + thunderMinTicks > rainTime)) {
+                var timeText = ticks_to_text(rainTime);
+                $('#forecast-text').text("Weather forecast: WEATHER ALERT: There will be a (possibly short) thunderstorm in " + timeText + "!");
+            } else {
+                var timeText = ticks_to_text(rainTime);
+                $('#forecast-text').text("Weather forecast: It will be raining in " + timeText + ".");
+            };
         };
     } else {
         if (thunderstatus == 1) {
