@@ -4,9 +4,11 @@ var rainTime = -2;
 var thunderTime = -2;
 
 var thunderMinTicks = 3600;
+var thunderMaxTicks = 12000 + thunderMinTicks;
 var thunderMinWaitTicks = 12000;
 
 var rainMinTicks = 12000;
+var rainMaxTicks = 12000 + rainMinTicks
 var rainMinWaitTicks = 12000;
 
 var updating = true;
@@ -111,22 +113,35 @@ function displayWeatherStatus() {
         $('#rain-text').text("It's not raining, you can come out now.");
         $('#wimg').attr('src', '/img/sun.png');
 
+        var minRainTimestamp = rainTime + rainMinTicks;
+        var maxRainTimestamp = rainTime + rainMaxTicks;
+
+        var minThunderTimestamp = thunderTime + thunderMinTicks;
+        var maxThunderTimestamp = thunderTime + thunderMaxTicks;
+
         if (rainTime >= 0) {
             if ((thunderstatus == 1 && thunderTime > rainTime) ||
                 (thunderTime < rainTime && thunderTime + thunderMinTicks > rainTime)) {
                 var timeText = ticks_to_text(rainTime);
                 $('#forecast-text').text("Weather forecast: WEATHER ALERT: There will be a (possibly short) thunderstorm in " + timeText + "!");
-            } else if (thunderstatus == 0 && thunderTime > rainTime && thunderTime < rainTime + rainMinTicks) {
-                var rainText = ticks_to_text(rainTime);
-                var thunderText = ticks_to_text(thunderTime);
-                $('#forecast-text').text("Weather forecast: It will be raining in " + rainText + ". ALERT: There will also be a thunderstorm in " + thunderText + "!");
+            } else if (thunderstatus == 0 && thunderTime >= rainTime && thunderTime < maxRainTimestamp) {
+                if (thunderTime < rainTime + rainMinTicks) {
+                    // Not thundering, not raining, but after the minimal time of rain it will have started to thunder.
+                    var rainText = ticks_to_text(rainTime);
+                    var thunderText = ticks_to_text(thunderTime);
+                    $('#forecast-text').text("Weather forecast: It will be raining in " + rainText + ". ALERT: There will also be a thunderstorm in " + thunderText + "!");
+                } else {
+                    // Probability that thunder will have started while rain is still going on.
+                    var thunderTimeAfterRainMinTime = thunderTime - minRainTimestamp;
+                    var thunderProbability = 1 - (thunderTimeAfterRainMinTime / (rainMaxTicks - rainMinTicks));
+                    var timeText = ticks_to_text(rainTime);
+                    $('#forecast-text').text("Weather forecast: It will be raining in " + timeText + " with a " + Math.floor(thunderProbability * 100) +  "% chance of a thunderstorm!");
+                }
             } else {
-                var timeText = ticks_to_text(rainTime);
-                $('#forecast-text').text("Weather forecast: It will be raining in " + timeText + ".");
+                 var timeText = ticks_to_text(rainTime);
+                 $('#forecast-text').text("Weather forecast: It will be raining in " + timeText + ".");
             };
-        };
-    } else {
-        if (thunderstatus == 1) {
+        } else if (thunderstatus == 1) {
             $('#rain-caption').text("Yes! D:");
             $('#rain-text').text("It's thundering even! Ermagehrd!");
             $('#wimg').attr('src', '/img/thunder.png');
