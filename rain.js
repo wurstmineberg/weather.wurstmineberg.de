@@ -31,7 +31,7 @@ function ticks_to_text(ticks)
     var text = padNumber(secondsSinceHour, 2) + 's';
 
     if (hours > 0) {
-        text = padNumber(hoursSinceDay, 2) + 'h ' + text;
+        text = hoursSinceDay + 'h ' + text;
     };
     if (days > 0) {
         text = daysSinceMonth + 'd ' + text;
