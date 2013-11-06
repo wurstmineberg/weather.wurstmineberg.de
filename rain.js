@@ -82,7 +82,7 @@ function tickTimer() {
         } else {
             rainTime--;
             if (rainTime <= 0) {
-                rainTime = rainstatus == 1 ? 0 : 1;
+                rainstatus = rainstatus == 1 ? 0 : 1;
             };
         };
 
