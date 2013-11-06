@@ -112,7 +112,7 @@ function displayWeatherStatus() {
         $('#wimg').attr('src', '/img/sun.png');
 
         if (rainTime >= 0) {
-            if ((thunderstatus == 1 && thunderTime < rainTime) ||
+            if ((thunderstatus == 1 && thunderTime > rainTime) ||
                 (thunderTime < rainTime && thunderTime + thunderMinTicks > rainTime)) {
                 var timeText = ticks_to_text(rainTime);
                 $('#forecast-text').text("Weather forecast: WEATHER ALERT: There will be a (possibly short) thunderstorm in " + timeText + "!");
