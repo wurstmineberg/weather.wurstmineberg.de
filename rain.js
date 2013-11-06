@@ -116,6 +116,10 @@ function displayWeatherStatus() {
                 (thunderTime < rainTime && thunderTime + thunderMinTicks > rainTime)) {
                 var timeText = ticks_to_text(rainTime);
                 $('#forecast-text').text("Weather forecast: WEATHER ALERT: There will be a (possibly short) thunderstorm in " + timeText + "!");
+            } else if (thunderstatus == 0 && thunderTime > rainTime && thunderTime < rainTime + rainMinTicks) {
+                var rainText = ticks_to_text(rainTime);
+                var thunderText = ticks_to_text(thunderTime);
+                $('#forecast-text').text("Weather forecast: It will be raining in " + rainText + ". ALERT: There will also be a thunderstorm in " + thunderText + "!");
             } else {
                 var timeText = ticks_to_text(rainTime);
                 $('#forecast-text').text("Weather forecast: It will be raining in " + timeText + ".");
