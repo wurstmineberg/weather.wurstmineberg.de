@@ -137,19 +137,19 @@ function displayWeatherStatus() {
                  var timeText = ticks_to_text(rainTime);
                  $('#forecast-text').text("Weather forecast: It will be raining in " + timeText + ".");
             };
-        } else if (thunderstatus == 1) {
-            $('#rain-caption').text("Yes! D:");
-            $('#rain-text').text("It's thundering even! Ermagehrd!");
-            $('#wimg').attr('src', '/img/thunder.png');
+        };
+    } else if (thunderstatus == 1) {
+        $('#rain-caption').text("Yes! D:");
+        $('#rain-text').text("It's thundering even! Ermagehrd!");
+        $('#wimg').attr('src', '/img/thunder.png');
 
-            if (thunderTime >= 0 && rainTime >= 0) {
-                if (thunderTime < rainTime) {
-                    var timeText = ticks_to_text(thunderTime);
-                    $('#forecast-text').text("Weather forecast: It will stop thundering in " + timeText + ". Afterwards it will be raining.");
-                } else {
-                    var timeText = ticks_to_text(rainTime);
-                    $('#forecast-text').text("Weather forecast: There will be sunshine in " + timeText + ".");
-                };
+        if (thunderTime >= 0 && rainTime >= 0) {
+            if (thunderTime < rainTime) {
+                var timeText = ticks_to_text(thunderTime);
+                $('#forecast-text').text("Weather forecast: It will stop thundering in " + timeText + ". Afterwards it will be raining.");
+            } else {
+                var timeText = ticks_to_text(rainTime);
+                $('#forecast-text').text("Weather forecast: There will be sunshine in " + timeText + ".");
             };
         };
     } else {
