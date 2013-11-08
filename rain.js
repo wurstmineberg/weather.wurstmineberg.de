@@ -14,6 +14,8 @@ var rainMinWaitTicks = 12000;
 var updating = true;
 var refreshingData = true;
 
+var previousTimestamp = 0;
+
 setInterval(refreshTimer, 30000);
 setInterval(tickTimer, 50);
 fetchData()
@@ -198,6 +200,15 @@ function fetchData() {
                 'api-time-result-fetched' in data) {
                 var secondOffset = data['api-time-result-fetched'] - data['api-time-last-modified'];
                 tickOffset = secondOffset * 20;
+
+                if (Math.floor(previousTimestamp) == Math.floor(data['api-time-last-modified']) {
+                	// No update so we don't need to update the data and replace it
+                	updating = false;
+                	refreshingData = false;
+                	return;
+                };
+
+                previousTimestamp = data['api-time-last-modified'];
             };
 
             thunderTime -= tickOffset;
