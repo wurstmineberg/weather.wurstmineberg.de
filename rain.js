@@ -201,7 +201,7 @@ function fetchData() {
                 var secondOffset = data['api-time-result-fetched'] - data['api-time-last-modified'];
                 tickOffset = secondOffset * 20;
 
-                if (Math.floor(previousTimestamp) == Math.floor(data['api-time-last-modified']) {
+                if (Math.floor(previousTimestamp) == Math.floor(data['api-time-last-modified'])) {
                 	// No update so we don't need to update the data and replace it
                 	updating = false;
                 	refreshingData = false;
