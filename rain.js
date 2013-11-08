@@ -159,7 +159,7 @@ function displayWeatherStatus() {
 
         if (thunderTime >= 0 && rainTime >= 0) {
             if (thunderTime < rainTime) {
-                var timeText = ticks_to_text(rainTime);
+                var timeText = ticks_to_text(thunderTime);
                 $('#forecast-text').text("Weather forecast: WEATHER ALERT: There will be a thunderstorm in " + timeText + "!");
             } else {
                 var timeText = ticks_to_text(rainTime);
