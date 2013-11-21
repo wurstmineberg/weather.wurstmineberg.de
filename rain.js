@@ -16,9 +16,12 @@ var refreshingData = true;
 
 var previousTimestamp = 0;
 
+if (location.hostname != 'isitraining.wurstmineberg.de') {
+    $('#isitraining-caption').html('Is it raining on Wurstmineberg?');
+}
 setInterval(refreshTimer, 30000);
 setInterval(tickTimer, 50);
-fetchData()
+fetchData();
 
 function padNumber(num, size) {
     var s = num + '';
@@ -202,10 +205,10 @@ function fetchData() {
                 tickOffset = secondOffset * 20;
 
                 if (Math.floor(previousTimestamp) == Math.floor(data['api-time-last-modified'])) {
-                	// No update so we don't need to update the data and replace it
-                	updating = false;
-                	refreshingData = false;
-                	return;
+                    // No update so we don't need to update the data and replace it
+                    updating = false;
+                    refreshingData = false;
+                    return;
                 };
 
                 previousTimestamp = data['api-time-last-modified'];
