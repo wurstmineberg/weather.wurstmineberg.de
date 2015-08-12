@@ -16,7 +16,7 @@ var refreshingData = true;
 
 var previousTimestamp = 0;
 
-if (location.hostname != 'isitraining.wurstmineberg.de') {
+if (!/^isitraining\.(dev\.)?([0-9a-z]+\.)?wurstmineberg\.de$/.test(location.hostname)) {
     $('#isitraining-caption').html('Is it raining on Wurstmineberg?');
 }
 setInterval(refreshTimer, 30000);
