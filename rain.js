@@ -175,7 +175,7 @@ function displayWeatherStatus() {
 }
 
 function fetchData() {
-    $.ajax('http://api.wurstmineberg.de/server/level.json', {
+    $.ajax('//api.wurstmineberg.de/server/level.json', {
         dataType: 'json',
         success: function(data) {
             updating = true;
